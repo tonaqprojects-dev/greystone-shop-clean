@@ -1,4 +1,4 @@
-const WHATSAPP_NUMBER = "2637XXXXXXXX";
+const WHATSAPP_NUMBER = "263776706614";
 const SHOP_EMAIL = "info@greystonecollege.co.zw";
 
 export default function Page() {

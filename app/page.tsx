@@ -146,9 +146,7 @@ function BundleCard({ bundle }) {
             {bundle.items}
           </p>
         </div>
-        <span className={bundle.highlight ? "text-2xl font-bold text-[#D4AF37]" : "text-2xl font-bold text-[#D4AF37]"}>
-          {bundle.price}
-        </span>
+        <span className="text-2xl font-bold text-[#D4AF37]">{bundle.price}</span>
       </div>
 
       <p className={bundle.highlight ? "mt-4 text-base leading-7 text-slate-100" : "mt-4 text-base leading-7 text-slate-600"}>
@@ -355,4 +353,4 @@ export default function Page() {
       </footer>
     </div>
   );
-            }
+      }

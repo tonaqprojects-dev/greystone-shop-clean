@@ -5,55 +5,69 @@ const products = [
     name: "Dark Turquoise Hoodie",
     price: "$30",
     image: "/images/hoodie.jpg",
-    badge: "Best Seller",
-    message: "Hi Greystone College, I would like to order the Dark Turquoise Hoodie ($30).",
+    badge: "Limited Stock",
+    message:
+      "Hi Greystone College,%0A%0AI would like to order:%0A%0AProduct: Dark Turquoise Hoodie%0ASize: Please confirm available sizes%0AQuantity: 1%0A%0APlease advise on payment and collection/delivery.",
+    details: "Available sizes: S, M, L, XL • Available colours: Dark Turquoise / Sand-Gold",
   },
   {
     name: "Sand/Gold Hoodie",
     price: "$30",
     image: "/images/hoodie2.jpg",
     badge: "Premium",
-    message: "Hi Greystone College, I would like to order the Sand/Gold Hoodie ($30).",
+    message:
+      "Hi Greystone College,%0A%0AI would like to order:%0A%0AProduct: Sand/Gold Hoodie%0ASize: Please confirm available sizes%0AQuantity: 1%0A%0APlease advise on payment and collection/delivery.",
+    details: "Available sizes: S, M, L, XL • Available colours: Dark Turquoise / Sand-Gold",
   },
   {
     name: "Backpack",
     price: "$25",
     image: "/images/backpack.jpg",
     badge: "Student Essential",
-    message: "Hi Greystone College, I would like to order the Backpack ($25).",
+    message:
+      "Hi Greystone College,%0A%0AI would like to order:%0A%0AProduct: Backpack%0AQuantity: 1%0A%0APlease advise on payment and collection/delivery.",
+    details: "Official Greystone College merchandise for everyday identity and pride.",
   },
   {
     name: "Cap",
     price: "$15",
     image: "/images/cap.jpg",
     badge: "Classic",
-    message: "Hi Greystone College, I would like to order the Cap ($15).",
+    message:
+      "Hi Greystone College,%0A%0AI would like to order:%0A%0AProduct: Cap%0AQuantity: 1%0A%0APlease advise on payment and collection/delivery.",
+    details: "Official Greystone College merchandise for everyday identity and pride.",
   },
   {
     name: "Water Bottle",
     price: "$10",
     image: "/images/bottle.jpg",
     badge: "Daily Use",
-    message: "Hi Greystone College, I would like to order the Water Bottle ($10).",
+    message:
+      "Hi Greystone College,%0A%0AI would like to order:%0A%0AProduct: Water Bottle%0AQuantity: 1%0A%0APlease advise on payment and collection/delivery.",
+    details: "Official Greystone College merchandise for everyday identity and pride.",
   },
   {
     name: "Scarf",
     price: "$12",
     image: "/images/scarf.jpg",
     badge: "Accessory",
-    message: "Hi Greystone College, I would like to order the Scarf ($12).",
+    message:
+      "Hi Greystone College,%0A%0AI would like to order:%0A%0AProduct: Scarf%0AQuantity: 1%0A%0APlease advise on payment and collection/delivery.",
+    details: "Official Greystone College merchandise for everyday identity and pride.",
   },
   {
     name: "Stationery Set",
     price: "$20",
     image: "/images/stationary.jpg",
     badge: "School Pack",
-    message: "Hi Greystone College, I would like to order the Stationery Set ($20).",
+    message:
+      "Hi Greystone College,%0A%0AI would like to order:%0A%0AProduct: Stationery Set%0AQuantity: 1%0A%0APlease advise on payment and collection/delivery.",
+    details: "Official Greystone College merchandise for everyday identity and pride.",
   },
 ];
 
 function whatsappLink(message: string) {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
 }
 
 function ProductCard({
@@ -62,12 +76,14 @@ function ProductCard({
   image,
   badge,
   message,
+  details,
 }: {
   name: string;
   price: string;
   image: string;
   badge: string;
   message: string;
+  details: string;
 }) {
   return (
     <div className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
@@ -92,6 +108,10 @@ function ProductCard({
 
         <p className="mt-3 text-sm leading-6 text-slate-500">
           Official Greystone College merchandise designed for identity, pride, and everyday use.
+        </p>
+
+        <p className="mt-3 text-sm font-medium leading-6 text-slate-700">
+          {details}
         </p>
 
         <a
@@ -147,13 +167,21 @@ export default function Page() {
               Collection
             </a>
             <a
+              href="#order"
+              className="text-sm font-medium text-slate-200 transition hover:text-white"
+            >
+              How to Order
+            </a>
+            <a
               href="#why"
               className="text-sm font-medium text-slate-200 transition hover:text-white"
             >
               Why Us
             </a>
             <a
-              href={whatsappLink("Hi Greystone College, I would like to order merchandise.")}
+              href={whatsappLink(
+                "Hi Greystone College,%0A%0AI would like to order merchandise.%0A%0APlease advise on payment and collection/delivery."
+              )}
               target="_blank"
               rel="noreferrer"
               className="rounded-full bg-[#D4AF37] px-4 py-2 text-sm font-semibold text-slate-950 transition hover:opacity-95"
@@ -179,9 +207,18 @@ export default function Page() {
             </h1>
 
             <p className="mt-5 max-w-2xl text-base leading-7 text-slate-200 md:text-lg">
-              Premium Greystone College apparel, accessories, and school essentials
-              designed in our signature dark turquoise and sand-gold identity.
+              Premium Greystone College apparel, accessories, and official essentials crafted in our signature dark turquoise and sand-gold identity.
             </p>
+
+            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-200 md:text-lg">
+              Designed for students, families, and supporters who represent excellence beyond the classroom.
+            </p>
+
+            <div className="mt-6 space-y-2 text-sm font-medium text-slate-100">
+              <p>✔ Official Greystone College merchandise</p>
+              <p>✔ Designed with our authentic crest and identity</p>
+              <p>✔ Available now via WhatsApp ordering</p>
+            </div>
 
             <div className="mt-8 flex flex-wrap gap-4">
               <a
@@ -191,7 +228,9 @@ export default function Page() {
                 Shop Collection
               </a>
               <a
-                href={whatsappLink("Hi Greystone College, I would like to order merchandise.")}
+                href={whatsappLink(
+                  "Hi Greystone College,%0A%0AI would like to order merchandise.%0A%0APlease advise on payment and collection/delivery."
+                )}
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-[#0F4C5C]"
@@ -229,8 +268,7 @@ export default function Page() {
             Designed for Excellence • Built for Identity • Worn with Pride
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-center text-sm leading-7 text-slate-600 md:text-base">
-            Explore official Greystone College merchandise for students, families,
-            supporters, and the wider school community.
+            Explore official Greystone College merchandise for students, families, supporters, and the wider school community.
           </p>
         </div>
       </section>
@@ -246,7 +284,9 @@ export default function Page() {
             </h2>
           </div>
           <a
-            href={whatsappLink("Hi Greystone College, I need help choosing merchandise.")}
+            href={whatsappLink(
+              "Hi Greystone College,%0A%0AI need help choosing merchandise.%0A%0APlease advise on payment and collection/delivery."
+            )}
             target="_blank"
             rel="noreferrer"
             className="inline-flex rounded-full border border-slate-300 px-5 py-3 text-sm font-semibold text-[#0F4C5C] transition hover:border-[#0F4C5C]"
@@ -262,31 +302,69 @@ export default function Page() {
         </div>
       </section>
 
+      <section id="order" className="border-y border-slate-200 bg-white">
+        <div className="mx-auto max-w-7xl px-5 py-14 md:px-8">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#D4AF37]">
+            How to Order
+          </p>
+          <h2 className="mt-2 text-3xl font-bold text-[#0F4C5C] md:text-4xl">
+            Simple ordering process
+          </h2>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-4">
+            <div className="rounded-3xl bg-slate-50 p-6">
+              <p className="text-sm font-semibold text-[#D4AF37]">Step 1</p>
+              <h3 className="mt-2 text-lg font-bold text-[#0F4C5C]">Choose your item</h3>
+            </div>
+            <div className="rounded-3xl bg-slate-50 p-6">
+              <p className="text-sm font-semibold text-[#D4AF37]">Step 2</p>
+              <h3 className="mt-2 text-lg font-bold text-[#0F4C5C]">Click “Order on WhatsApp”</h3>
+            </div>
+            <div className="rounded-3xl bg-slate-50 p-6">
+              <p className="text-sm font-semibold text-[#D4AF37]">Step 3</p>
+              <h3 className="mt-2 text-lg font-bold text-[#0F4C5C]">Confirm size and quantity</h3>
+            </div>
+            <div className="rounded-3xl bg-slate-50 p-6">
+              <p className="text-sm font-semibold text-[#D4AF37]">Step 4</p>
+              <h3 className="mt-2 text-lg font-bold text-[#0F4C5C]">Receive payment and collection details</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="why" className="border-y border-slate-200 bg-white">
         <div className="mx-auto grid max-w-7xl gap-6 px-5 py-14 md:grid-cols-3 md:px-8">
           <div className="rounded-3xl bg-slate-50 p-6">
             <h3 className="text-lg font-bold text-[#0F4C5C]">Official Branding</h3>
             <p className="mt-3 text-sm leading-7 text-slate-600">
-              Every item reflects the Greystone College identity with our official
-              crest and signature colours.
+              Every item reflects the Greystone College identity with our official crest and signature colours.
             </p>
           </div>
 
           <div className="rounded-3xl bg-slate-50 p-6">
             <h3 className="text-lg font-bold text-[#0F4C5C]">Simple Ordering</h3>
             <p className="mt-3 text-sm leading-7 text-slate-600">
-              Fast product-by-product ordering through WhatsApp makes the process
-              easy for families and supporters.
+              Fast product-by-product ordering through WhatsApp makes the process easy for families and supporters.
             </p>
           </div>
 
           <div className="rounded-3xl bg-slate-50 p-6">
             <h3 className="text-lg font-bold text-[#0F4C5C]">Premium Presentation</h3>
             <p className="mt-3 text-sm leading-7 text-slate-600">
-              Clean design, consistent layout, and stronger visual hierarchy give
-              the shop a refined professional feel.
+              Clean design, consistent layout, and stronger visual hierarchy give the shop a refined professional feel.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="bg-[#f7f7f5] px-5 py-12 md:px-8">
+        <div className="mx-auto max-w-7xl rounded-[2rem] bg-gradient-to-r from-[#0F4C5C] to-[#123C49] px-8 py-10 text-white shadow-xl">
+          <p className="text-sm uppercase tracking-[0.18em] text-[#D4AF37]">
+            Greystone Standard
+          </p>
+          <h2 className="mt-3 text-3xl font-bold md:text-4xl">
+            Greystone College is more than a school — it is a standard.
+          </h2>
         </div>
       </section>
 
@@ -305,7 +383,9 @@ export default function Page() {
               Main Website
             </a>
             <a
-              href={whatsappLink("Hi Greystone College, I would like to order merchandise.")}
+              href={whatsappLink(
+                "Hi Greystone College,%0A%0AI would like to order merchandise.%0A%0APlease advise on payment and collection/delivery."
+              )}
               target="_blank"
               rel="noreferrer"
               className="rounded-full bg-[#D4AF37] px-5 py-3 text-sm font-semibold text-slate-950 transition hover:opacity-95"

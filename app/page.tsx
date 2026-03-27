@@ -1,275 +1,358 @@
-const featuredProducts = [ { name: "Greystone Hoodie", price: "$30", description: "Premium Greystone hoodie designed for comfort, warmth, and identity.", image: "/images/hoodie.jpg", tag: "Best Seller", }, { name: "Greystone Backpack", price: "$25", description: "Durable and stylish, built for everyday academic use.", image: "/images/backpack.jpg", tag: "Student Essential", }, { name: "Greystone Cap", price: "$10", description: "Simple, clean, and proudly Greystone.", image: "/images/cap.jpg", tag: "Classic", }, { name: "Greystone Bottle", price: "$12", description: "Stay hydrated. Stay sharp.", image: "/images/bottle.jpg", tag: "Daily Use", }, ];
+const WHATSAPP_NUMBER = "263776706614";
+const MAIN_SITE_URL = "https://greystonecollege.co.zw";
+const SHOP_EMAIL = "info@greystonecollege.co.zw";
 
-const bundles = [ { name: "Starter Pack", price: "$30", items: "Backpack + Notebook + Pen", description: "Perfect for everyday school use.", }, { name: "Premium Student Pack", price: "$45", items: "Hoodie + Cap + Bottle", description: "Maximum identity, best value.", featured: true, }, ];
+const products = [
+  {
+    name: "Greystone Hoodie – Dark Turquoise Edition",
+    price: "$30",
+    image: "/images/hoodie2.jpg",
+    alt: "Greystone dark turquoise hoodie",
+    tag: "Best Seller",
+    message: "Hi, I want the Greystone Hoodie – Dark Turquoise Edition.",
+  },
+  {
+    name: "Greystone Hoodie – Sand/Gold Edition",
+    price: "$30",
+    image: "/images/hoodie.jpg",
+    alt: "Greystone sand gold hoodie",
+    tag: "Premium",
+    message: "Hi, I want the Greystone Hoodie – Sand/Gold Edition.",
+  },
+  {
+    name: "Greystone Premium Backpack",
+    price: "$25",
+    image: "/images/backpack.jpg",
+    alt: "Greystone premium backpack",
+    tag: "Student Essential",
+    message: "Hi, I want the Greystone Premium Backpack.",
+  },
+  {
+    name: "Greystone Cap",
+    price: "$10",
+    image: "/images/cap.jpg",
+    alt: "Greystone cap",
+    tag: "Classic",
+    message: "Hi, I want the Greystone Cap.",
+  },
+  {
+    name: "Greystone Water Bottle",
+    price: "$12",
+    image: "/images/bottle.jpg",
+    alt: "Greystone water bottle",
+    tag: "Daily Use",
+    message: "Hi, I want the Greystone Water Bottle.",
+  },
+  {
+    name: "Greystone Scarf",
+    price: "$15",
+    image: "/images/scarf.jpg",
+    alt: "Greystone scarf",
+    tag: "Seasonal",
+    message: "Hi, I want the Greystone Scarf.",
+  },
+  {
+    name: "Greystone Stationery Set",
+    price: "$20",
+    image: "/images/stationary.jpg",
+    alt: "Greystone stationery set",
+    tag: "Gift Pick",
+    message: "Hi, I want the Greystone Stationery Set.",
+  },
+];
 
-const lifestyleImages = [ "/images/lifestyle-1.jpg", "/images/lifestyle-2.jpg", "/images/lifestyle-3.jpg", ];
+const bundles = [
+  {
+    name: "Starter Pack",
+    price: "$30",
+    items: "Backpack + Notebook + Pen",
+    description: "A practical everyday starter bundle for Greystone students.",
+    highlight: false,
+    message: "Hi, I want the Greystone Starter Pack.",
+  },
+  {
+    name: "Premium Student Pack",
+    price: "$45",
+    items: "Hoodie + Cap + Bottle",
+    description: "The best-value Greystone lifestyle bundle.",
+    highlight: true,
+    message: "Hi, I want the Greystone Premium Student Pack.",
+  },
+];
 
-const WHATSAPP_NUMBER = "263XXXXXXXXX"; const MAIN_SITE_URL = "https://greystonecollege.co.zw"; const SHOP_EMAIL = "info@greystonecollege.co.zw";
+function whatsappLink(message) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
 
-function CrestMark() { return ( <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 border-amber-500 bg-white shadow-sm"> <img
-src="/images/greystone-crest.png"
-alt="Greystone College Crest"
-className="h-full w-full object-cover"
-/> </div> ); }
+function ProductCard({ product }) {
+  return (
+    <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+      <div className="border-b border-slate-100 bg-slate-50 p-4">
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <span className="rounded-full bg-[#D4AF37] px-3 py-1 text-xs font-semibold text-slate-950">
+            {product.tag}
+          </span>
+          <span className="text-lg font-bold text-[#0F4C5C]">{product.price}</span>
+        </div>
 
-function ProductCard({ name, price, description, image, tag, }: { name: string; price: string; description: string; image: string; tag: string; }) { return ( <div className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"> <div className="relative"> <img src={image} alt={name} className="h-72 w-full object-cover" /> <span className="absolute left-4 top-4 rounded-full bg-amber-500 px-3 py-1 text-xs font-semibold text-slate-950"> {tag} </span> </div> <div className="p-6"> <div className="flex items-start justify-between gap-4"> <h3 className="text-xl font-semibold text-sky-950">{name}</h3> <span className="text-lg font-bold text-amber-600">{price}</span> </div> <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p> <a href={https://wa.me/${WHATSAPP_NUMBER}} className="mt-5 inline-flex rounded-full bg-sky-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-sky-800" > Order Now </a> </div> </div> ); }
+        <div className="flex h-72 items-center justify-center overflow-hidden rounded-2xl bg-white p-3">
+          <img
+            src={product.image}
+            alt={product.alt}
+            className="h-full w-full object-contain"
+          />
+        </div>
+      </div>
 
-export default function GreystoneShopPage() { return ( <div className="min-h-screen bg-white text-slate-900"> <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur"> <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8"> <div className="flex items-center gap-3"> <CrestMark /> <div> <p className="text-lg font-semibold tracking-wide text-sky-950">Greystone College Shop</p> <p className="text-sm text-slate-500">Official Merchandise</p> </div> </div>
+      <div className="p-5">
+        <h3 className="min-h-[56px] text-lg font-bold leading-6 text-[#0F4C5C]">
+          {product.name}
+        </h3>
 
-<nav className="hidden items-center gap-6 text-sm font-medium text-slate-700 md:flex">
-        <a href="#featured" className="hover:text-sky-900">Featured</a>
-        <a href="#bundles" className="hover:text-sky-900">Bundles</a>
-        <a href="#identity" className="hover:text-sky-900">Identity</a>
-        <a href="#order" className="hover:text-sky-900">Order</a>
+        <p className="mt-2 text-sm leading-6 text-slate-500">
+          Official Greystone College merchandise designed for identity, pride, and everyday use.
+        </p>
+
         <a
-          href={MAIN_SITE_URL}
-          className="rounded-full border border-slate-300 px-4 py-2 hover:border-sky-900 hover:text-sky-900"
+          href={whatsappLink(product.message)}
+          className="mt-4 block rounded-xl bg-[#0F4C5C] px-4 py-3 text-center text-sm font-semibold text-white transition hover:opacity-95"
         >
-          Main Website
+          Order on WhatsApp
         </a>
-      </nav>
-    </div>
-  </header>
-
-  <section className="relative overflow-hidden bg-sky-950">
-    <div className="absolute inset-0 bg-gradient-to-br from-sky-950 via-sky-900 to-slate-950" />
-    <div className="absolute -right-24 top-10 h-72 w-72 rounded-full bg-amber-400/20 blur-3xl" />
-    <div className="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" />
-
-    <div className="relative mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-2 lg:px-8 lg:py-28">
-      <div className="flex flex-col justify-center">
-        <div className="mb-6 inline-flex w-fit rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm text-white/90">
-          Official Merchandise • Identity • Excellence
-        </div>
-        <h1 className="max-w-2xl text-4xl font-bold leading-tight text-white md:text-6xl">
-          Greystone College Shop
-        </h1>
-        <p className="mt-6 max-w-xl text-lg leading-8 text-slate-200">
-          Discover premium Greystone College merchandise designed for pride, performance, and everyday use.
-        </p>
-        <p className="mt-4 max-w-xl text-base leading-7 text-slate-300">
-          Wear the identity. Represent the standard.
-        </p>
-
-        <div className="mt-8 flex flex-wrap gap-4">
-          <a
-            href="#featured"
-            className="rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg transition hover:scale-[1.02]"
-          >
-            Shop Now
-          </a>
-          <a
-            href={`https://wa.me/${WHATSAPP_NUMBER}`}
-            className="rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-sky-950"
-          >
-            Order via WhatsApp
-          </a>
-        </div>
-      </div>
-
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div className="overflow-hidden rounded-3xl bg-white/10 p-3 shadow-2xl backdrop-blur">
-          <img
-            src={featuredProducts[0].image}
-            alt={featuredProducts[0].name}
-            className="h-72 w-full rounded-2xl object-cover"
-          />
-        </div>
-        <div className="mt-8 overflow-hidden rounded-3xl bg-white/10 p-3 shadow-2xl backdrop-blur sm:mt-16">
-          <img
-            src={featuredProducts[1].image}
-            alt={featuredProducts[1].name}
-            className="h-72 w-full rounded-2xl object-cover"
-          />
-        </div>
       </div>
     </div>
-  </section>
+  );
+}
 
-  <section id="featured" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-    <div className="mb-12 max-w-2xl">
-      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-600">Featured Collection</p>
-      <h2 className="mt-3 text-3xl font-bold text-sky-950 md:text-4xl">Top picks from the Greystone collection</h2>
-      <p className="mt-4 text-lg text-slate-600">
-        Curated essentials designed for student pride, daily use, and a premium Greystone identity.
-      </p>
-    </div>
+function BundleCard({ bundle }) {
+  return (
+    <div
+      className={
+        bundle.highlight
+          ? "rounded-3xl border border-[#D4AF37] bg-[#0F4C5C] p-8 text-white shadow-lg"
+          : "rounded-3xl border border-slate-200 bg-white p-8 text-slate-900 shadow-sm"
+      }
+    >
+      {bundle.highlight && (
+        <span className="mb-4 inline-flex rounded-full bg-[#D4AF37] px-3 py-1 text-xs font-semibold text-slate-950">
+          Most Popular
+        </span>
+      )}
 
-    <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
-      {featuredProducts.map((product) => (
-        <ProductCard key={product.name} {...product} />
-      ))}
-    </div>
-  </section>
-
-  <section id="bundles" className="bg-slate-50 py-20">
-    <div className="mx-auto max-w-7xl px-6 lg:px-8">
-      <div className="mb-12 max-w-2xl">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-600">Best Value Bundles</p>
-        <h2 className="mt-3 text-3xl font-bold text-sky-950 md:text-4xl">Designed to give more value</h2>
-        <p className="mt-4 text-lg text-slate-600">
-          Bundle your essentials for a stronger identity and better value.
-        </p>
-      </div>
-
-      <div className="grid gap-8 lg:grid-cols-2">
-        {bundles.map((bundle) => (
-          <div
-            key={bundle.name}
-            className={`rounded-3xl border p-8 shadow-sm ${
-              bundle.featured
-                ? "border-amber-400 bg-sky-950 text-white"
-                : "border-slate-200 bg-white text-slate-900"
-            }`}
-          >
-            {bundle.featured && (
-              <span className="mb-4 inline-flex rounded-full bg-amber-500 px-3 py-1 text-xs font-semibold text-slate-950">
-                Most Popular
-              </span>
-            )}
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h3 className="text-2xl font-bold">{bundle.name}</h3>
-                <p className={`mt-2 text-sm ${bundle.featured ? "text-slate-200" : "text-slate-500"}`}>
-                  {bundle.items}
-                </p>
-              </div>
-              <span className={`text-2xl font-bold ${bundle.featured ? "text-amber-400" : "text-amber-600"}`}>
-                {bundle.price}
-              </span>
-            </div>
-            <p className={`mt-4 text-base leading-7 ${bundle.featured ? "text-slate-100" : "text-slate-600"}`}>
-              {bundle.description}
-            </p>
-            <a
-              href={`https://wa.me/${WHATSAPP_NUMBER}`}
-              className={`mt-6 inline-flex rounded-full px-5 py-3 text-sm font-semibold transition ${
-                bundle.featured
-                  ? "bg-amber-500 text-slate-950 hover:scale-[1.02]"
-                  : "bg-sky-900 text-white hover:bg-sky-800"
-              }`}
-            >
-              Order Bundle
-            </a>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section id="identity" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-    <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-      <div>
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-600">More Than Merchandise</p>
-        <h2 className="mt-3 text-3xl font-bold text-sky-950 md:text-4xl">The Greystone identity</h2>
-        <p className="mt-5 text-lg leading-8 text-slate-600">
-          Every item represents the Greystone College identity — excellence, discipline, and pride.
-        </p>
-        <p className="mt-4 text-base leading-7 text-slate-600">
-          This is more than what you wear. It is what you represent. Designed for students, families, and supporters who want to carry the Greystone standard into everyday life.
-        </p>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-2xl border border-slate-200 p-5">
-            <h3 className="font-semibold text-sky-950">Premium Branding</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-600">Built around Greystone colours, crest, and a premium student identity.</p>
-          </div>
-          <div className="rounded-2xl border border-slate-200 p-5">
-            <h3 className="font-semibold text-sky-950">Everyday Use</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-600">Practical products designed for school life, events, and daily pride.</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div className="overflow-hidden rounded-3xl sm:col-span-2">
-          <img src={lifestyleImages[0]} alt="Greystone lifestyle" className="h-72 w-full object-cover" />
-        </div>
-        <div className="overflow-hidden rounded-3xl">
-          <img src={lifestyleImages[1]} alt="Students lifestyle" className="h-56 w-full object-cover" />
-        </div>
-        <div className="overflow-hidden rounded-3xl">
-          <img src={lifestyleImages[2]} alt="Greystone campus culture" className="h-56 w-full object-cover" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="order" className="bg-sky-950 py-20 text-white">
-    <div className="mx-auto max-w-7xl px-6 lg:px-8">
-      <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+      <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-400">Order Now</p>
-          <h2 className="mt-3 text-3xl font-bold md:text-4xl">Fast, simple ordering through WhatsApp</h2>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-200">
-            To place your order, simply contact us via WhatsApp. Our team will confirm your item, size, colour, payment method, and collection or delivery details.
+          <h3 className="text-2xl font-bold">{bundle.name}</h3>
+          <p className={bundle.highlight ? "mt-2 text-sm text-slate-200" : "mt-2 text-sm text-slate-500"}>
+            {bundle.items}
           </p>
-          <div className="mt-8 flex flex-wrap gap-4">
+        </div>
+        <span className={bundle.highlight ? "text-2xl font-bold text-[#D4AF37]" : "text-2xl font-bold text-[#D4AF37]"}>
+          {bundle.price}
+        </span>
+      </div>
+
+      <p className={bundle.highlight ? "mt-4 text-base leading-7 text-slate-100" : "mt-4 text-base leading-7 text-slate-600"}>
+        {bundle.description}
+      </p>
+
+      <a
+        href={whatsappLink(bundle.message)}
+        className={
+          bundle.highlight
+            ? "mt-6 inline-flex rounded-full bg-[#D4AF37] px-5 py-3 text-sm font-semibold text-slate-950 transition hover:opacity-95"
+            : "mt-6 inline-flex rounded-full bg-[#0F4C5C] px-5 py-3 text-sm font-semibold text-white transition hover:opacity-95"
+        }
+      >
+        Order Bundle
+      </a>
+    </div>
+  );
+}
+
+export default function Page() {
+  return (
+    <div className="min-h-screen bg-[#F8F8F6] text-slate-900">
+      <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
+          <div className="flex items-center gap-3">
+            <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 border-[#D4AF37] bg-white shadow-sm">
+              <img
+                src="/images/greystone-crest.png"
+                alt="Greystone College Crest"
+                className="h-full w-full object-cover"
+              />
+            </div>
+
+            <div>
+              <h1 className="text-base font-bold tracking-wide text-[#0F4C5C] md:text-lg">
+                Greystone College Shop
+              </h1>
+              <p className="text-xs uppercase tracking-[0.18em] text-slate-500">
+                Official Merchandise
+              </p>
+            </div>
+          </div>
+
+          <a
+            href={whatsappLink("Hi, I would like to order Greystone College merchandise.")}
+            className="rounded-full bg-[#D4AF37] px-4 py-2 text-sm font-semibold text-slate-950 transition hover:opacity-95"
+          >
+            WhatsApp Order
+          </a>
+        </div>
+      </header>
+
+      <section className="bg-gradient-to-br from-[#0F4C5C] via-[#123C49] to-slate-950 px-5 py-16 text-white md:px-8 md:py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/90">
+              Identity • Excellence • Pride
+            </span>
+
+            <h2 className="mt-6 text-4xl font-bold leading-tight md:text-6xl">
+              Greystone College Shop
+            </h2>
+
+            <p className="mt-5 max-w-2xl text-base leading-7 text-slate-200 md:text-lg">
+              Official Greystone College merchandise styled in our signature dark turquoise and sand-gold palette, designed for students, families, and supporters who want to wear the standard.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-4">
+              <a
+                href="#products"
+                className="rounded-full bg-[#D4AF37] px-6 py-3 text-sm font-semibold text-slate-950 transition hover:opacity-95"
+              >
+                Shop Collection
+              </a>
+
+              <a
+                href={whatsappLink("Hi, I would like to order Greystone College merchandise.")}
+                className="rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-[#0F4C5C]"
+              >
+                Order via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-14 md:px-8 md:py-20">
+        <div className="rounded-3xl border border-slate-200 bg-white px-6 py-8 shadow-sm md:px-10">
+          <p className="text-center text-sm font-semibold uppercase tracking-[0.18em] text-[#D4AF37]">
+            Official Greystone College Merchandise
+          </p>
+
+          <h3 className="mt-3 text-center text-3xl font-bold text-[#0F4C5C] md:text-4xl">
+            Designed for Excellence • Built for Identity • Worn with Pride
+          </h3>
+
+          <p className="mx-auto mt-4 max-w-3xl text-center text-sm leading-7 text-slate-600 md:text-base">
+            Every item in this collection reflects the Greystone College brand system, with a premium finish, corrected colours, and clean presentation aligned to the school’s official visual identity.
+          </p>
+        </div>
+      </section>
+
+      <section id="products" className="mx-auto max-w-7xl px-5 pb-20 md:px-8">
+        <div className="mb-8 flex items-end justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#D4AF37]">
+              Featured Collection
+            </p>
+            <h3 className="mt-2 text-3xl font-bold text-[#0F4C5C] md:text-4xl">
+              Shop the Greystone range
+            </h3>
+          </div>
+
+          <a
+            href={whatsappLink("Hi, I need help ordering Greystone College merchandise.")}
+            className="hidden rounded-full border border-slate-300 px-5 py-3 text-sm font-semibold text-[#0F4C5C] transition hover:border-[#0F4C5C] md:inline-flex"
+          >
+            Need help ordering?
+          </a>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {products.map((product) => (
+            <ProductCard key={product.name} product={product} />
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-slate-50 py-20">
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
+          <div className="mb-10">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#D4AF37]">
+              Best Value Bundles
+            </p>
+            <h3 className="mt-2 text-3xl font-bold text-[#0F4C5C] md:text-4xl">
+              Bundle and save
+            </h3>
+          </div>
+
+          <div className="grid gap-8 lg:grid-cols-2">
+            {bundles.map((bundle) => (
+              <BundleCard key={bundle.name} bundle={bundle} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="order" className="border-y border-slate-200 bg-white">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 md:grid-cols-3 md:px-8">
+          <div className="rounded-3xl bg-slate-50 p-6">
+            <h4 className="text-lg font-bold text-[#0F4C5C]">Correct Brand Colours</h4>
+            <p className="mt-3 text-sm leading-7 text-slate-600">
+              Updated to reflect Greystone’s true dark turquoise and sand-gold colour system for a more premium and consistent visual identity.
+            </p>
+          </div>
+
+          <div className="rounded-3xl bg-slate-50 p-6">
+            <h4 className="text-lg font-bold text-[#0F4C5C]">Simple Ordering</h4>
+            <p className="mt-3 text-sm leading-7 text-slate-600">
+              Each item links directly to WhatsApp, making ordering quick, familiar, and easy for students, parents, and supporters.
+            </p>
+          </div>
+
+          <div className="rounded-3xl bg-slate-50 p-6">
+            <h4 className="text-lg font-bold text-[#0F4C5C]">Premium Presentation</h4>
+            <p className="mt-3 text-sm leading-7 text-slate-600">
+              Refined spacing, stronger product naming, and improved card styling give the shop a cleaner and more professional retail feel.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer className="bg-[#0F4C5C] px-5 py-10 text-white md:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-5 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-lg font-bold">Greystone College Shop</p>
+            <p className="mt-1 text-sm text-slate-200">Achieving Excellence Together</p>
+          </div>
+
+          <div className="flex flex-wrap gap-3">
             <a
-              href={`https://wa.me/${WHATSAPP_NUMBER}`}
-              className="rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:scale-[1.02]"
+              href={MAIN_SITE_URL}
+              className="rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white hover:text-[#0F4C5C]"
+            >
+              Main Website
+            </a>
+
+            <a
+              href={`mailto:${SHOP_EMAIL}`}
+              className="rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white hover:text-[#0F4C5C]"
+            >
+              Email
+            </a>
+
+            <a
+              href={whatsappLink("Hi, I would like to order Greystone College merchandise.")}
+              className="rounded-full bg-[#D4AF37] px-5 py-3 text-sm font-semibold text-slate-950 transition hover:opacity-95"
             >
               Order via WhatsApp
             </a>
-            <a
-              href={`mailto:${SHOP_EMAIL}`}
-              className="rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-sky-950"
-            >
-              Email Us
-            </a>
           </div>
         </div>
-
-        <div className="rounded-3xl bg-white/10 p-8 backdrop-blur">
-          <h3 className="text-xl font-semibold text-white">Delivery & Collection</h3>
-          <div className="mt-6 space-y-5 text-sm leading-6 text-slate-200">
-            <div>
-              <p className="font-semibold text-white">Collection</p>
-              <p>Greystone College campus collection point</p>
-            </div>
-            <div>
-              <p className="font-semibold text-white">Delivery</p>
-              <p>Delivery available on request. Fees may apply depending on location.</p>
-            </div>
-            <div>
-              <p className="font-semibold text-white">Processing Time</p>
-              <p>Orders are typically processed within 24–48 hours.</p>
-            </div>
-            <div>
-              <p className="font-semibold text-white">Support</p>
-              <p>Fast response • Secure ordering • Limited stock on selected items</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      </footer>
     </div>
-  </section>
-
-  <footer className="border-t border-slate-200 bg-white">
-    <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-10 text-sm text-slate-600 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-      <div>
-        <p className="text-base font-semibold text-sky-950">Greystone College Shop</p>
-        <p className="mt-1">Achieving Excellence Together</p>
-      </div>
-      <div className="flex flex-wrap gap-4">
-        <a href={MAIN_SITE_URL} className="hover:text-sky-900">Main Website</a>
-        <a href={`mailto:${SHOP_EMAIL}`} className="hover:text-sky-900">{SHOP_EMAIL}</a>
-        <a href={`https://wa.me/${WHATSAPP_NUMBER}`} className="hover:text-sky-900">WhatsApp</a>
-      </div>
-    </div>
-  </footer>
-</div>
-
-); }
-
-
-
-
-4. Replace WHATSAPP_NUMBER with your real number in international format, no + sign.
-
-
-5. Replace MAIN_SITE_URL and SHOP_EMAIL if needed.
-
-
-6. Push to GitHub and import the 
-
-
+  );
+            }
